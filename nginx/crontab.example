@@ -1,0 +1,2 @@
+# renew ssl for *.domain.com  every day at 6.43 AM
+43 6 * * * certbot renew --post-hook "systemctl reload nginx"

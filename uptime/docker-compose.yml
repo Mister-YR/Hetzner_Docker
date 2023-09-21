@@ -1,0 +1,17 @@
+version: '3.3'
+# self-hosted monitoring tool (like a UptimeRobot)
+services:
+  kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Kyiv
+    ports:
+      - 8300:3001
+    volumes:
+    # patrh to store data
+      - /uptime-kuma/:/app/data
+    restart: unless-stopped
+    

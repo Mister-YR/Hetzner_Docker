@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  iredmail:
+    image: iredmail/mariadb:stable
+    container_name: iRedMail
+    env_file:
+    # .env file with mail dependency
+      - .env
+    ports:
+    # change port if needed
+      - "8080:80"
+      - "8443:443"
+      - "110:110"
+      - "995:995"
+      - "143:143"
+      - "993:993"
+      - "25:25"
+      - "465:465"
+      - "587:587"
+    volumes:
+    # this section will carete /mail-data/... directory
+      - /mail-data/iredmail/data/backup-mysql:/var/vmail/backup/mysql
+      - /mail-data/iredmail/data/mailboxes:/var/vmail/vmail1
+      - /mail-data/iredmail/data/mlmmj:/var/vmail/mlmmj
+      - /mail-data/iredmail/data/mlmmj-archive:/var/vmail/mlmmj-archive
+      - /mail-data/iredmail/data/imapsieve_copy:/var/vmail/imapsieve_copy
+      - /mail-data/iredmail/data/custom:/opt/iredmail/custom
+      - /mail-data/iredmail/data/ssl:/opt/iredmail/ssl
+      - /mail-data/iredmail/data/mysql:/var/lib/mysql
+      - /mail-data/iredmail/data/clamav:/var/lib/clamav
+      - /mail-data/iredmail/data/sa_rules:/var/lib/spamassassin
+      - /mail-data/iredmail/data/postfix_queue:/var/spool/postfix
+    #restart policy
+    restart: unless-stopped

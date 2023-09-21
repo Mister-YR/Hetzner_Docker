@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  crontab-ui:
+    image: alseambusher/crontab-ui
+    environment:
+      - BASIC_AUTH_USER=USER
+      - BASIC_AUTH_PWD=Pass
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+    duplicati:
+    # image: lscr.io/linuxserver/duplicati:latest
+        image: lscr.io/linuxserver/duplicati:latest
+        container_name: duplicati-pi
+        volumes:
+        # mounted volumes
+            - /docker-compose/duplicati/data/config:/config:rw
+            - /docker-compose/duplicati/data/backups/:/backups
+        # source folder to backups
+            - /docker-compose/:/source
+            - /uptime-kuma:/home
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Kyiv
+        ports:
+        #http web port
+            - 8200:8200
+        restart: unless-stopped

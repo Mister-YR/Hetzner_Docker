@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+    yarr:
+        container_name: yarr
+        image: maskalicz/yarr:latest
+        ports:
+            - 8088:7070
+        volumes:
+            - /news/data/:/data:rw
