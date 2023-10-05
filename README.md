@@ -1,2 +1,3 @@
 # Hetzner_Docker
 Small VM on Hetzner with docker and other things
+dependency.sh install basic dependency to run compose etc...
